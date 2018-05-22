@@ -1,8 +1,18 @@
 <!DOCTYPE html>
 <html>
-<head></head>
+<head>
+<style>
+.container{
+  display: flex;
+  flex-direction: column;
+  /* width: 30%; */
+  align-items: center;
+}
+</style>
+</head>
 <body>
 
+<div class=container>
   <select id="integer">
     <option value="1"> 1 </option>
     <option value="2"> 2 </option>
@@ -31,12 +41,15 @@
     <option value="25"> 25 </option>
     <option value="26"> 26 </option>
 
-    <br><br><br>
+
     <textarea rows="3" cols="20" id="plaintext">
     </textarea>
 
    <button type="submit" id="encrypt"> Encrypt </button>
-
+   <br>
+   <textarea rows="3" cols="20" id="ciphertext" placeholder="Ciphertext">
+   </textarea>
+</div>
     <script>
       window.onload=function(){
         //not necessary if we have encrypt()
@@ -98,7 +111,7 @@
             }
           }
 
-          alert("Ciphertext: " + c);
+          return "Ciphertext: " + c;
         }
 
 
