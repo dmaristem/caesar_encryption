@@ -39,9 +39,11 @@
 
     <script>
       window.onload=function(){
-        document.getElementById("integer").onchange=function encrypt(){
-          var val = this.value;
-          var k = val.options[val.selectedIndex].text;
+        document.getElementById("integer").onchange=function() {encrypt()};
+      }
+        function encrypt(){
+          var selectedInt = document.getElementById("integer");
+          var k = selectedInt.options[selectedInt.selectedIndex].text;
           var p = document.getElementById("plaintext").value;
 
           var alpha = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s",
@@ -82,7 +84,7 @@
 
           alert("Ciphertext: " + c);
         }
-      }
+      
 
 
 
