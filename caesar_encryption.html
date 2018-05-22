@@ -2,49 +2,6 @@
 <html>
 <head></head>
 <body>
-  <script>
-    var selectInt = document.getElementById("integer");
-    var k = selectInt.options[selectInt.selectedIndex].text;
-    alert("k");
-    var p = prompt("Plaintext:");
-    var alpha = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s",
-    "t", "u", "v", "w", "x", "y", "z"];
-    var alpha2 = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S",
-     "T", "U", "V", "W", "X", "Y", "Z"];
-    var c = "";
-
-    //Loop through each character of the Plaintext
-    for(var i = 0; i < p.length; i++){
-      //loop through the letters of the alphabet
-      for(var j = 0; j < alpha.length; j++){
-        if(p[i] == alpha[j]){
-          //wrapping z to a; need to put before the else case, or else final ciphertext will include 'undefined'
-          if(j+k > 25){
-            c += alpha[(j + k) - 26];
-          } else{
-            c += alpha[j + k];
-          }
-        } else if (p[i] == alpha2[j]) {
-          if(j+k > 25){
-            c += alpha2[(j + k) - 26];
-          } else{
-            c += alpha2[j + k];
-          }
-        }
-        // case: space between words --- to much space, needs tweaking
-        else if(p[i] == " "){
-          c += " ";
-        }
-        //punctuation -- needs to be fixed
-        // else{
-        //   c += p[i];
-        // }
-
-      }
-    }
-
-    alert("Ciphertext: " + c);
-  </script>
 
   <select id="integer">
     <option value="1"> 1 </option>
@@ -74,7 +31,64 @@
     <option value="25"> 25 </option>
     <option value="26"> 26 </option>
 
+    <br><br><br>
+    <textarea rows="3" cols="20" id="plaintext">
+    </textarea>
 
+   <button type="submit" id="encrypt" onclick="encrypt()"> Encrypt </button>
+
+    <script>
+      window.onload=function(){
+        document.getElementById("integer").onchange=function encrypt(){
+          var val = this.value;
+          var k = val.options[val.selectedIndex].text;
+          var p = document.getElementById("plaintext").value;
+
+          var alpha = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s",
+          "t", "u", "v", "w", "x", "y", "z"];
+          var alpha2 = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S",
+           "T", "U", "V", "W", "X", "Y", "Z"];
+          var c = "";
+
+          //Loop through each character of the Plaintext
+          for(var i = 0; i < p.length; i++){
+            //loop through the letters of the alphabet
+            for(var j = 0; j < alpha.length; j++){
+              if(p[i] == alpha[j]){
+                //wrapping z to a; need to put before the else case, or else final ciphertext will include 'undefined'
+                if(j+k > 25){
+                  c += alpha[(j + k) - 26];
+                } else{
+                  c += alpha[j + k];
+                }
+              } else if (p[i] == alpha2[j]) {
+                if(j+k > 25){
+                  c += alpha2[(j + k) - 26];
+                } else{
+                  c += alpha2[j + k];
+                }
+              }
+              // case: space between words --- to much space, needs tweaking
+              else if(p[i] == " "){
+                c += " ";
+              }
+              //punctuation -- needs to be fixed
+              // else{
+              //   c += p[i];
+              // }
+
+            }
+          }
+
+          alert("Ciphertext: " + c);
+        }
+      }
+
+
+
+
+
+    </script>
 
 
 </body>
