@@ -35,15 +35,21 @@
     <textarea rows="3" cols="20" id="plaintext">
     </textarea>
 
-   <button type="submit" id="encrypt" onclick="encrypt()"> Encrypt </button>
+   <button type="submit" id="encrypt"> Encrypt </button>
 
     <script>
       window.onload=function(){
-        document.getElementById("integer").onchange=function() {encrypt()};
+        document.getElementById("integer").onchange=function() {getInt()};
+        document.getElementById("encrypt").onclick=function() {encrypt()};
       }
-        function encrypt(){
+        function getInt(){
           var selectedInt = document.getElementById("integer");
-          var k = selectedInt.options[selectedInt.selectedIndex].text;
+          var k = selectedInt.options[selectedInt.selectedIndex].value;
+          return k;
+        }
+
+        function encrypt(){
+          var k = getInt();
           var p = document.getElementById("plaintext").value;
 
           var alpha = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s",
@@ -82,9 +88,9 @@
             }
           }
 
-          alert("Ciphertext: " + c);
+          return "Ciphertext: " + c;
         }
-      
+
 
 
 
