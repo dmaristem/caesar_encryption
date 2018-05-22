@@ -39,18 +39,27 @@
 
     <script>
       window.onload=function(){
-        document.getElementById("integer").onchange=function() {getInt()};
+        document.getElementById("integer").onchange=function() {getInt()}; //not necessary if we have encrypt()
         document.getElementById("encrypt").onclick=function() {encrypt()};
       }
+       //Get the integer that represents the shift
         function getInt(){
           var selectedInt = document.getElementById("integer");
-          var k = selectedInt.options[selectedInt.selectedIndex].value;
-          return k;
+          var theInt = selectedInt.options[selectedInt.selectedIndex].value;
+          return theInt;
+        }
+        // Get the plaintext
+        function getPlaintext(){
+          var text = document.getElementById("plaintext").value;
+          return text;
         }
 
+
+        //Get the ciphertext
         function encrypt(){
-          var k = getInt();
-          var p = document.getElementById("plaintext").value;
+          var k = Number(getInt());
+          // var p = document.getElementById("plaintext").value;
+          var p = getPlaintext();
 
           var alpha = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s",
           "t", "u", "v", "w", "x", "y", "z"];
@@ -88,8 +97,9 @@
             }
           }
 
-          return "Ciphertext: " + c;
+          alert("Ciphertext: " + c);
         }
+
 
 
 
